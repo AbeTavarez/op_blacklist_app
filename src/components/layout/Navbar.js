@@ -1,16 +1,18 @@
+import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   return (
     <nav>
       <h1>OP BLACKLIST APP</h1>
       <ul>
         <il>
-          <a href="index.html">Home</a>
+          <Link to="/">Home</Link>
         </il>
         <il>
-          <a href="index.html">Register</a>
+          <Link to="/register">Register</Link>
         </il>
         <il>
-          <a href="index.html">Login</a>
+          <Link to="/login">Login</Link>
         </il>
       </ul>
     </nav>
