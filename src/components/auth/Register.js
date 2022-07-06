@@ -1,24 +1,48 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.id]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
       console.log('Passwords dont match');
     } else {
-      console.log(formData);
+      const newUser = {
+        name,
+        email,
+        password,
+      };
+
+      try {
+        const config = {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        };
+        const body = JSON.stringify(newUser);
+
+        const res = await axios.post(
+          'http://localhost:4000/api/users',
+          body,
+          config
+        );
+        // Token coming back
+        console.log(res.data);
+      } catch (err) {
+        console.log(err.response.data);
+      }
     }
   };
 
